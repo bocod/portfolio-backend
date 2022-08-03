@@ -15,15 +15,17 @@ import lombok.Setter;
 @Entity
 public class Skills {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Basic
     private String skill;
     private Integer level;
-    private String levelName ;
+    private String levelName;
 
     @ManyToOne
     private Profile profile;
+
+    public Skills(){}
 
     public Skills(Long id, String skill, Integer level, String levelName, Profile profile) {
         this.id = id;

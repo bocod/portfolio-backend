@@ -15,20 +15,24 @@ import lombok.Setter;
 public class Projects {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Basic
     private String name;
     private String description;
+    private String projectURL;
 
     @ManyToOne
     private Profile profile;
 
-    public Projects( Long id, String name, String description, Profile profile) {
+    public Projects(){}
+
+    public Projects( Long id, String name, String description, String projectURL, Profile profile) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.projectURL  = projectURL;
         this.profile = profile;
     }
     

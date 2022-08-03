@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Profile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Basic
     private String firstname;
@@ -22,18 +22,17 @@ public class Profile {
     private String subtitle;
     private String location;
     private String contact;
+    private String avatar;
 
+    public Profile(){}
 
-    public Profile() {
-        
-    }
-    
     public Profile( Long id, 
                     String firstname, 
                     String surname, 
                     String subtitle, 
                     String location , 
-                    String contact 
+                    String contact,
+                    String avatar
                 ) {
         this.id = id;
         this.firstname = firstname;
@@ -41,6 +40,10 @@ public class Profile {
         this.subtitle = subtitle;
         this.location = location;
         this.contact = contact;
+        this.avatar = avatar;
     }
+
+    // @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private About about;
 
 }

@@ -1,7 +1,5 @@
 package com.portfolio.portofolio.model;
 
-import java.sql.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,27 +15,29 @@ import lombok.Setter;
 public class Education {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Basic
     private String degree;
     private String institute;
-    private Date end;
+    private String end;
     private String logoURL;
-    private String certificatefURL;
+    private String certificateURL;
     private Boolean studying;
     private String description;
 
     @ManyToOne
     private Profile profile;
 
+    public Education(){}
+    
     public Education(   Long id,
                         String degree,
                         String institute,
-                        Date end,
+                        String end,
                         String logoURL,
-                        String certificatefURL,
+                        String certificateURL,
                         Boolean studying,
                         String description,
                         Profile profile ) {
@@ -47,7 +47,7 @@ public class Education {
         this.institute = institute;
         this.end = end;
         this.logoURL = logoURL;
-        this.certificatefURL = certificatefURL;
+        this.certificateURL = certificateURL;
         this.studying = studying;
         this.description = description;
         this.profile = profile;
