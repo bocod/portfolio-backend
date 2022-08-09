@@ -20,18 +20,16 @@ public class Skills {
     @Basic
     private String skill;
     private Integer level;
-    private String levelName;
 
     @ManyToOne
     private Profile profile;
 
     public Skills(){}
 
-    public Skills(Long id, String skill, Integer level, String levelName, Profile profile) {
+    public Skills(Long id, String skill, Integer level, Profile profile) {
         this.id = id;
         this.skill = skill;
         this.level = level;
-        this.levelName = levelName;
         this.profile = profile;
     }
 
