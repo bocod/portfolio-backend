@@ -33,13 +33,13 @@ public class JwtTokenFilter extends OncePerRequestFilter{
                 try {
                     String token = getToken(request);
                     if(token != null && jwtProvider.validateToken(token)){
-                        String userName = jwtProvider.getEmailFromToken(token);
-                        UserDetails userDetails = userDetailsServiceImplementation.loadUserByUsername(userName);
+                        String username = jwtProvider.getUsernameFromToken(token);
+                        UserDetails userDetails = userDetailsServiceImplementation.loadUserByUsername(username);
                         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                         SecurityContextHolder.getContext().setAuthentication(auth);
                     }
                 } catch (Exception e) {
-                    logger.error("Error in method doFilter");
+                    logger.error("Error in method doFilter" + e.getMessage());
                 }
                 filterChain.doFilter(request, response);
         

@@ -9,20 +9,29 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class MainUser implements UserDetails {
+
+    private String nombre;
+    private String nombreUsuario;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public MainUser(String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public MainUser() {
+    }
+
+    public MainUser(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
 
     public static MainUser build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
-        return new MainUser(email.getUsername(), password.getPassword(), authorities);
+        List<GrantedAuthority> authorities =
+                user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
+
+        return new MainUser(user.getUsername(), user.getUsername(), user.getEmail(), user.getPassword(), authorities);
     }
 
     @Override
@@ -37,7 +46,7 @@ public class MainUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return nombreUsuario;
     }
 
     @Override
@@ -58,5 +67,37 @@ public class MainUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 }

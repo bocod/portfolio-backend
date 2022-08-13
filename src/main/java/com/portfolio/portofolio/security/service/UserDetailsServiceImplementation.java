@@ -16,9 +16,8 @@ public class UserDetailsServiceImplementation implements UserDetailsService{
     UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        User user = userService.getByEmail(email).get();
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userService.getByUsername(username).get();
         return MainUser.build(user);
     }
     
