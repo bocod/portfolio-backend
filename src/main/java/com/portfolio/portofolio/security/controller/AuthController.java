@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -59,10 +59,11 @@ public class AuthController {
         if (userService.existsByEmail(newUser.getEmail()))
             return new ResponseEntity<>("Email already exist", HttpStatus.BAD_REQUEST);
         User user = new User(
+            newUser.getName(),
             newUser.getUsername(), 
             newUser.getEmail(), 
-            passwordEncoder.encode(newUser.getPassword()), null
-            );
+            passwordEncoder.encode(newUser.getPassword())
+        );
 
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getByRoleName(RoleName.ROLE_USER).get());
