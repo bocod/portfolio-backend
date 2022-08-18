@@ -20,7 +20,7 @@ import com.portfolio.portofolio.model.Projects;
 import com.portfolio.portofolio.service.ProjectsService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portfolio-24c0e.web.app")
 @RequestMapping("/projects")
 public class projectsController {
 

@@ -20,7 +20,7 @@ import com.portfolio.portofolio.model.Education;
 import com.portfolio.portofolio.service.IEducationService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portfolio-24c0e.web.app")
 @RequestMapping("/education")
 public class educationController {
 
